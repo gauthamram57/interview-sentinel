@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Interview Guard — Dashboard</title>
+<style>
+  body { font-family: -apple-system, Segoe UI, sans-serif; max-width: 640px; margin: 48px auto; color: #222; }
+  h1 { font-size: 20px; }
+  button { padding: 10px 16px; border-radius: 8px; border: 1px solid #ccc; background: #f4f4f4; cursor: pointer; }
+  button:hover { background: #eee; }
+  .card { border: 1px solid #e2e2e2; border-radius: 12px; padding: 20px; margin-top: 20px; }
+  code { background: #f2f2f2; padding: 2px 6px; border-radius: 4px; }
+  .status { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: #999; }
+  .dot.clear { background: #2ea043; }
+  .dot.flagged { background: #d1242f; }
+  ul#flags { list-style: none; padding: 0; }
+  ul#flags li { padding: 8px 0; border-bottom: 1px solid #eee; font-size: 14px; }
+  input[type=text] { width: 100%; padding: 8px; border-radius: 6px; border: 1px solid #ccc; box-sizing: border-box; }
+</style>
+</head>
+<body>
+  <h1>Interview Guard</h1>
+  <p>Create a session, send the link to the candidate, and watch status live during the call.</p>
+
+  <div class="card">
+    <label>API key</label>
+    <input type="text" id="apiKeyInput" placeholder="ig_..." />
+    <p style="font-size:13px;color:#666">No credits yet? <a href="#" id="buyLink">Buy a credit pack</a> — starts a Stripe checkout, no card details ever touch this app.</p>
+    <button id="createBtn">Create interview link</button>
+    <div id="linkBox" style="margin-top:16px; display:none">
+      <label>Candidate link</label>
+      <input type="text" id="linkInput" readonly />
+      <p id="creditsNote" style="font-size:13px;color:#666"></p>
+    </div>
+  </div>
+
+  <div class="card" id="statusCard" style="display:none">
+    <div class="status"><span class="dot" id="statusDot"></span><span id="statusText">Waiting for candidate…</span></div>
+    <h3>Flag log</h3>
+    <ul id="flags"></ul>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Interview Guard</title>
+<style>
+  body { font-family: -apple-system, Segoe UI, sans-serif; margin: 0; padding: 16px; color: #222; font-size: 13px; }
+  h2 { font-size: 15px; margin: 0 0 8px; }
+  p.disclosure { color: #666; font-size: 11px; line-height: 1.4; }
+  input, button { padding: 8px; border-radius: 6px; border: 1px solid #ccc; }
+  input { width: 100%; box-sizing: border-box; margin-bottom: 8px; }
+  button { width: 100%; cursor: pointer; }
+  .status { margin-top: 12px; display: flex; align-items: center; gap: 8px; font-weight: 600; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: #999; }
+  .dot.clear { background: #2ea043; }
+  .dot.flagged { background: #d1242f; }
+</style>
+</head>
+<body>
+  <h2>Interview Guard</h2>
+  <div id="joinForm">
+    <input id="codeInput" type="text" placeholder="Paste session code" />
+    <button id="joinBtn">Join session</button>
+  </div>
+
+  <div id="statusView" style="display:none">
+    <div class="status"><span class="dot" id="dot"></span><span id="statusText">Connecting…</span></div>
+  </div>
+
+  <p class="disclosure">
+    While connected, this app checks the names of running applications and
+    windows against a known list, and reads one OS flag that indicates a
+    window has hidden itself from screen sharing. It does not read files,
+    browsing history, or keystrokes.
+  </p>
+
+  <script src="renderer.js"></script>
+</body>
+</html>

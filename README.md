@@ -44,20 +44,7 @@ The platform focuses on **environment verification**, **desktop integrity**, and
 
 # Architecture
 
-```text
-                        Candidate Device
-
-                    Electron Companion App
-                              │
-                              │
-                    WebSocket Telemetry
-                              │
-                              ▼
-                    Node.js Session Server
-                              │
-                              ▼
-                  Interviewer Dashboard
-```
+<img width="1024" height="572" alt="image" src="https://github.com/user-attachments/assets/5d275b88-dc8f-4562-9af5-2fd91b53e887" />
 
 ---
 

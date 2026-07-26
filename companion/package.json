@@ -1,0 +1,71 @@
+{
+  "name": "interview-guard-companion",
+  "version": "0.1.0",
+  "private": true,
+  "main": "src/main.js",
+  "author": "Interview Guard",
+  "description": "Interview integrity monitoring agent",
+  "scripts": {
+    "start": "electron .",
+    "build:win": "electron-builder --win --publish never",
+    "build:mac": "electron-builder --mac --publish never",
+    "release": "electron-builder --win --mac --publish always"
+  },
+  "dependencies": {
+    "koffi": "^2.9.0",
+    "node-window-manager": "^2.2.4",
+    "ps-list": "^8.1.1",
+    "ws": "^8.17.0"
+  },
+  "devDependencies": {
+    "electron": "^31.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.interviewguard.companion",
+    "productName": "Interview Guard",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "src/**/*",
+      "!src/detection/macWindowSharing/*.swift"
+    ],
+    "extraResources": [
+      {
+        "from": "src/detection/macWindowSharing/mac-window-sharing",
+        "to": "mac-window-sharing"
+      }
+    ],
+    "win": {
+      "target": [{ "target": "nsis", "arch": ["x64"] }],
+      "artifactName": "InterviewGuard-Setup.${ext}",
+      "signAndEditExecutable": true,
+      "signtoolOptions": {
+        "certificateFile": "${env.WIN_CSC_LINK}",
+        "certificatePassword": "${env.WIN_CSC_KEY_PASSWORD}"
+      }
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
+    "mac": {
+      "target": [{ "target": "dmg", "arch": ["universal"] }],
+      "artifactName": "InterviewGuard.${ext}",
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false,
+      "notarize": true,
+      "category": "public.app-category.business"
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "REPLACE_WITH_YOUR_GITHUB_ORG",
+        "repo": "interview-guard"
+      }
+    ]
+  }
+}
